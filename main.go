@@ -8,10 +8,14 @@ import (
 )
 
 var VIDEO_STATE string = "UPLOADING"
-var WAIT_SECOND int = 10
+var WAIT_SECOND time.Duration = 10
 
 func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Video state : %s", VIDEO_STATE)
+}
+
+func handlerAsAuthor(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "(As Author) Video state : %s", VIDEO_STATE)
 }
 
 func manageVideoState() {
@@ -24,5 +28,6 @@ func manageVideoState() {
 func main() {
 		go manageVideoState()
     http.HandleFunc("/", handler)
+    http.HandleFunc("/author", handlerAsAuthor)
     log.Fatal(http.ListenAndServe(":2375", nil))
 }
