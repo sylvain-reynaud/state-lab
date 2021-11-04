@@ -7,16 +7,16 @@ import (
 		"time"
 )
 
-var VIDEO_STATE string
+var VIDEO_STATE string = "UPLOADING"
+var WAIT_SECOND int = 10
 
 func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Video state : %s", VIDEO_STATE)
 }
 
 func manageVideoState() {
-	VIDEO_STATE = "UPLOADING"
 	fmt.Println(VIDEO_STATE)
-	time.Sleep(10 * time.Second)
+	time.Sleep(WAIT_SECOND * time.Second)
 	VIDEO_STATE = "READY"
 	fmt.Println(VIDEO_STATE)
 }
