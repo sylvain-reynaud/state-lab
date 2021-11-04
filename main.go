@@ -10,15 +10,14 @@ import (
 var VIDEO_STATE string = "UPLOADING"
 var WAIT_SECOND time.Duration = 10
 
-
 var video Video
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Video : %s", video)
+  fmt.Fprintf(w, video.GetDownloadMessage())
 }
 
 func handlerAsAuthor(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "(As Author) Video : %s", video)
+	fmt.Fprintf(w, video.GetDownloadMessage())
 }
 
 func manageVideoState() {
